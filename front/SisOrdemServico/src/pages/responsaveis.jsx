@@ -1,8 +1,8 @@
 
-export function Home() {
+export function Responsaveis() {
     return(
         <div>
-            home
+            Responsaveis
         </div>
     );
 }

@@ -1,8 +1,8 @@
 
-export function Home() {
+export function Ambientes() {
     return(
         <div>
-            home
+            Ambientes
         </div>
     );
 }
