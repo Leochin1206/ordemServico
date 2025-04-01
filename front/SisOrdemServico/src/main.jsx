@@ -9,9 +9,16 @@ import './App.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Navbar />
-      <App />
-      <Footer />
+
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+
+        <main className="flex-grow">
+          <App />
+        </main>
+
+        <Footer />
+      </div>
     </BrowserRouter>
   </StrictMode>,
 )
