@@ -10,7 +10,7 @@ export function Navbar() {
     };
 
     return (
-        <nav className="text-[#03045e] p-4 flex items-center relative">
+        <nav className="text-[#03045e] p-4 flex items-center relative shadow-lg">
             <img src={iconNav} alt="Logo" className="w-[40px] h-auto" />
 
             <div className=" relative">
@@ -25,13 +25,13 @@ export function Navbar() {
 
                 {isOpen && (
                     <div className="absolute top-full left-0 bg-white text-black mt-1 shadow-lg rounded-md w-48 flex flex-col">
-                        <Link to='/Ambientes' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Ambientes</Link>
-                        <Link to='/Historico' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Histórico</Link>
-                        <Link to='/' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Home</Link>
-                        <Link to='/Manutentores' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Manutentores</Link>
+                        <Link to='/Home' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Home</Link>
                         <Link to='/OrdemServico' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Ordens de Serviço</Link>
+                        <Link to='/Ambientes' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Ambientes</Link>
+                        <Link to='/Manutentores' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Manutentores</Link>
                         <Link to='/Patrimonios' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Patrimônios</Link>
                         <Link to='/Responsaveis' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Responsáveis</Link>
+                        <Link to='/Historico' className="hover:bg-gray-100 px-4 py-2" onClick={handleLinkClick}>Histórico</Link>
                     </div>
                 )}
             </div>
