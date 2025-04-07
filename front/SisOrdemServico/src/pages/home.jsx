@@ -11,12 +11,16 @@ export function Home() {
             link: "/Ambientes"
         },
         {
+            titulo: "Gestores",
+            link: "/Gestores"
+        },
+        {
             titulo: "Manutentores",
             link: "/Manutentores"
         },
         {
             titulo: "Patrimônios",
-            link: "/atrimonios"
+            link: "/Patrimonios"
         },
         {
             titulo: "Responsáveis",

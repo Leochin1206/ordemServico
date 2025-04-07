@@ -1,5 +1,5 @@
-from .models import Ambientes, Gestores, Historico, Manutentores, OrdemServico, Responsaveis, Patrimonios
-from .serializer import AmbientesSerializer, GestoresSerializer, HistoricoSerializer, ManutentoresSerializer, OrdemServicoSerializer, ResponsaveisSerializer, PatrimoniosSerializer
+from .models import Ambientes, Gestores, Manutentores, OrdemServico, Responsaveis, Patrimonios
+from .serializer import AmbientesSerializer, GestoresSerializer, ManutentoresSerializer, OrdemServicoSerializer, ResponsaveisSerializer, PatrimoniosSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
@@ -76,40 +76,6 @@ class GestoresSearchView(ListAPIView):
     permission_classes = [IsAuthenticated]
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ['nome', 'ni', 'cargo', 'area']
-
-# ======================= Historico =======================
-
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def listar_historico(request):
-    if request.method == 'GET':
-        queryset = Historico.objects.all()
-        serializer = HistoricoSerializer(queryset, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = HistoricoSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-class HistoricoView(ListCreateAPIView):
-    queryset = Historico.objects.all()
-    serializer_class = HistoricoSerializer
-    permission_classes = [IsAuthenticated]
-
-class HistoricoDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = Historico.objects.all()
-    serializer_class = HistoricoSerializer
-    permission_classes = [IsAuthenticated]
-
-class HistoricoSearchView(ListAPIView):
-    queryset = Historico.objects.all()
-    serializer_class = HistoricoSerializer
-    permission_classes = [IsAuthenticated]
-    filter_backends = (DjangoFilterBackend, SearchFilter)
-    search_fields = ['ordem', 'descricao_manutencao']
 
 # ======================= Manutentores =======================
 
@@ -246,3 +212,19 @@ class PatrimoniosSearchView(ListAPIView):
     permission_classes = [IsAuthenticated]
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ['localizacao', 'ni', 'descricao']
+
+# ============================= SignUp =============================
+
+@api_view(['POST'])
+def register_user(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if username is None or password is None:
+        return Response({'error': 'Username and password required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if User.objects.filter(username=username).exists():
+        return Response({'error': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = User.objects.create_user(username=username, password=password)
+    return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)

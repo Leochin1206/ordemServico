@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export function Responsaveis() {
+export function Gestores() {
   const [dados, setDados] = useState([]);
   const token = localStorage.getItem('token');
 
@@ -10,7 +10,7 @@ export function Responsaveis() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/responsaveis", {
+        const response = await axios.get("http://127.0.0.1:8000/api/gestores", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDados(response.data);
@@ -24,14 +24,14 @@ export function Responsaveis() {
 
   return (
     <div className="bg-gray-50 flex flex-col items-center w-full py-12 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Responsáveis</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-8">Gestores</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
-        {dados.map((responsavel) => (
-          <div key={responsavel.id} className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center hover:shadow-lg transition-all">
+        {dados.map((gestor) => (
+          <div key={gestor.id} className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center hover:shadow-lg transition-all">
             <div>
-              <p className="text-sm text-gray-500">ID #{responsavel.id}</p>
-              <p className="text-lg font-semibold text-gray-800">{responsavel.nome}</p>
+              <p className="text-sm text-gray-500">ID #{gestor.id}</p>
+              <p className="text-lg font-semibold text-gray-800">{gestor.nome}</p>
             </div>
             <div className="text-[#007bc0]">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"

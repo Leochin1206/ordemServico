@@ -40,7 +40,3 @@ class OrdemServico(models.Model):
     ambiente = models.ForeignKey(Ambientes, on_delete=models.SET_NULL, null=True, blank=True)
     responsavel = models.ForeignKey(Responsaveis, on_delete=models.SET_NULL, null=True, blank=True)
     manutentor = models.ForeignKey(Manutentores, on_delete=models.SET_NULL, null=True, blank=True)
-
-class Historico(models.Model):
-    ordem = models.ForeignKey(OrdemServico, on_delete=models.SET_NULL, null=True, blank=True)
-    descricao_manutencao = models.TextField()
