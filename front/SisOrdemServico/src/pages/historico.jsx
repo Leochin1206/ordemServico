@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import addIcon from "../assets/add.svg";
+import searchIcon from "../assets/search.svg";
+import menuIcon from "../assets/menu.svg";
+import { ModalAdd } from "../components/modalAdd";
+import { ModalSearch } from "../components/modalSearch";
+import { ModalDeleteEdit } from "../components/modalDeleteEdit";
 
 export function Historico() {
   const [dados, setDados] = useState([]);
+  const [modalAdd, setModalAdd] = useState(false);
+  const [modalSearch, setModalSearch] = useState(false);
+  const [modalDeleteEdit, setModalDeleteEdit] = useState(false);
+  const [ordemServicoSelecionado, setOrdemServicoSelecionado] = useState(null);
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -23,26 +34,36 @@ export function Historico() {
   }, [token]);
 
   return (
-    <div className="bg-gray-50 flex flex-col items-center w-full py-12 px-4">
+    <div className="bg-gray-50 flex flex-col items-center w-full h-[87vh] py-12">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Histórico</h1>
 
+      <div className="flex items-center justify-end gap-2 mb-4 w-[57.5%] h-auto">
+        <img src={addIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalAdd(true)} />
+        <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
+      </div>
+
+      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
+      <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="nome" urlSearch="ordemServico" campos={["id", "nome", "ni", "cargo", "area"]} />
+      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} ordemServico={ordemServicoSelecionado} />
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
+
         {dados.map((historico) => (
+
           <div key={historico.id} className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center hover:shadow-lg transition-all">
+
             <div>
               <p className="text-sm text-gray-500">ID #{historico.id}</p>
               <p className="text-lg font-semibold text-gray-800">{historico.descricao_manutencao}</p>
             </div>
-            <div className="text-[#007bc0]">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                  d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-              </svg>
-            </div>
+
+            <img src={menuIcon} onClick={() => { setOrdemServicoSelecionado(ordemServico); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
+
           </div>
+
         ))}
       </div>
+
     </div>
   );
 }
