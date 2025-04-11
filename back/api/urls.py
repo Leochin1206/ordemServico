@@ -4,9 +4,12 @@ from .views import listar_ambientes, listar_gestores, listar_manutentores, lista
 from .views import AmbientesView, GestoresView, ManutentoresView, OrdemServicoView, PatrimoniosView, ResponsaveisView
 from .views import AmbientesDetailView, GestoresDetailView, ManutentoresDetailView, OrdemServicoDetailView, PatrimoniosDetailView, ResponsaveisDetailView
 from .views import AmbientesSearchView, GestoresSearchView, ManutentoresSearchView, OrdemServicoSearchView, PatrimoniosSearchView, ResponsaveisSearchView
+from .views import register_gestor
 
 
 urlpatterns = [
+    path('user/', register_gestor),
+
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/', TokenBlacklistView.as_view(), name='token_blacklist'),

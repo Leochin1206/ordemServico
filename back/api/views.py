@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from .models import Ambientes, Gestores, Manutentores, OrdemServico, Responsaveis, Patrimonios
 from .serializer import AmbientesSerializer, GestoresSerializer, ManutentoresSerializer, OrdemServicoSerializer, ResponsaveisSerializer, PatrimoniosSerializer
 from rest_framework.response import Response
@@ -8,6 +9,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from rolepermissions.roles import assign_role
+from rolepermissions.decorators import has_role_decorator
 
 # ======================= Ambientes =======================
 
@@ -228,3 +231,9 @@ def register_user(request):
 
     user = User.objects.create_user(username=username, password=password)
     return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+
+def register_gestor(request):
+    user = User.objects.create_user(username='elleo', password='123')
+    user.save()
+    assign_role(user, 'gestores')
+    return HttpResponse('usuario salvo')

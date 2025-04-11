@@ -22,7 +22,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     "corsheaders",
     'rest_framework_simplejwt.token_blacklist',
-    'django_filters'
+    'django_filters', 
+    'rolepermissions'
 ]
 
 REST_FRAMEWORK = {
@@ -103,3 +104,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ROLEPERMISSIONS_MODULE = "api.roles"
