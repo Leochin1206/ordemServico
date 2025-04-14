@@ -11,11 +11,8 @@ export function Navbar() {
     };
 
     const handleLogout = () => {
-        // Remove os tokens do localStorage
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
-
-        // Redireciona para a tela de login
         window.location.href = "/";
     };
 

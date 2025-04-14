@@ -9,6 +9,11 @@ import { ModalDeleteEdit } from "../components/modalDeleteEdit";
 
 export function OrdemServico() {
   const [dados, setDados] = useState([]);
+  const [modalAdd, setModalAdd] = useState(false);
+  const [modalSearch, setModalSearch] = useState(false);
+  const [modalDeleteEdit, setModalDeleteEdit] = useState(false);
+  const [ordemServicoSelecionado, setOrdemServicoSelecionado] = useState(null);
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {

@@ -34,7 +34,7 @@ export function Ambientes() {
   }, [token]);
 
   return (
-    <div className="bg-gray-50 flex flex-col items-center w-full h-[87vh] py-12">
+    <div className="bg-gray-50 flex flex-col items-center w-full py-12">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Ambientes</h1>
 
       <div className="flex items-center justify-end gap-2 mb-4 w-[57.5%] h-auto">
@@ -53,7 +53,7 @@ export function Ambientes() {
 
             <div>
               <p className="text-sm text-gray-500">ID #{ambiente.id}</p>
-              <p className="text-lg font-semibold text-gray-800">{ambiente.num_sala}</p>
+              <p className="text-lg font-semibold text-gray-800">{ambiente.descricao}</p>
             </div>
 
             <img src={menuIcon} onClick={() => { setAmbientesSelecionado(ambientes); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />

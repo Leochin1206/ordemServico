@@ -43,7 +43,7 @@ export function Patrimonios() {
         <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
       </div>
 
-      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
+      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} titulo="Patrimônio" url="patrimonio" campos={["localizacao", "ni", "descricao"]} />
       <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} urlSearch="patrimonio" parametroUrl="descricao" campos={["id", "localizacao", "ni", "descricao"]} />
       <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} patrimonio={patrimonioSelecionado} />
 

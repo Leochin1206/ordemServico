@@ -34,7 +34,7 @@ export function Responsaveis() {
   }, [token]);
 
   return (
-    <div className="bg-gray-50 flex flex-col items-center w-full h-[87vh] py-12">
+    <div className="bg-gray-50 flex flex-col items-center w-full py-12">
       <h1 className="text-3xl font-bold text-gray-800 mb-8">Responsáveis</h1>
 
       <div className="flex items-center justify-end gap-2 mb-4 w-[57.5%] h-auto">
