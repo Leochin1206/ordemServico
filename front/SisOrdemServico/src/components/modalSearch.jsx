@@ -27,6 +27,7 @@ export function ModalSearch({ isOpen, onClose, parametroUrl, urlSearch, campos =
             const filtrados = dados.filter(item =>
                 item.nome?.toLowerCase().includes(termoBusca) ||
                 item.descricao?.toLowerCase().includes(termoBusca) ||
+                item.descricao_servico?.toLowerCase().includes(termoBusca) ||
                 item.id?.toString().includes(termoBusca) ||
                 item.ni?.toString().includes(termoBusca)
             );

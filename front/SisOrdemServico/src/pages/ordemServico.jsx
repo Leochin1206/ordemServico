@@ -42,9 +42,39 @@ export function OrdemServico() {
         <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
       </div>
 
-      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
-      <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="nome" urlSearch="ordemServico" campos={["id", "nome", "ni", "cargo", "area"]} />
-      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} ordemServico={ordemServicoSelecionado} />
+      <ModalAdd
+        isOpen={modalAdd}
+        onClose={() => setModalAdd(false)}
+        titulo="Ordem de Servico"
+        url="ordemServico"
+        campos={["descricao_servico", "data_abertura", "data_encerramento", "status", "prioridade", "ambiente_id", "manutentor_id", "patrimonio_id", "responsavel_id"]}
+        relacoes={{
+          ambiente_id: { url: "ambientes", label: "descricao" },
+          manutentor_id: { url: "manutentores", label: "nome" },
+          patrimonio_id: { url: "patrimonio", label: "nome" },
+          responsavel_id: { url: "responsaveis", label: "nome" }
+        }} />
+
+
+      <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="descricao_servico" urlSearch="ordemServico" campos={["descricao_servico", "data_abertura", "data_encerramento", "status", "prioridade", "ambiente_id", "manutentor_id", "patrimonio_id", "responsavel_id"]} />
+
+      <ModalDeleteEdit
+        isOpen={modalDeleteEdit}
+        onClose={() => setModalDeleteEdit(false)}
+        url="ordemServ"
+        dados={ordemServicoSelecionado}
+        camposUpdate={[
+          "descricao_servico", "data_abertura", "data_encerramento",
+          "status", "prioridade", "ambiente_id", "manutentor_id",
+          "patrimonio_id", "responsavel_id"
+        ]}
+        relacoes={{
+          ambiente_id: { url: "ambientes", label: "descricao" },
+          manutentor_id: { url: "manutentores", label: "nome" },
+          patrimonio_id: { url: "patrimonio", label: "nome" },
+          responsavel_id: { url: "responsaveis", label: "nome" }
+        }}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
 

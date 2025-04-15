@@ -42,9 +42,17 @@ export function Responsaveis() {
         <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
       </div>
 
-      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
-      <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="nome" urlSearch="responsaveis" campos={["id", "nome", "ni", "cargo", "area"]} />
-      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} responsaveis={responsaveisSelecionado} />
+      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)}
+        titulo="Responsaveis" url="responsaveis"
+        campos={["nome", "email", "ni", "gestor_id"]}
+        relacoes={{ gestor_id: { url: "gestores", label: "nome" } }} />
+      <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="nome" urlSearch="responsaveis" campos={["id", "nome", "email", "ni", "gestor_id"]} />
+
+      <ModalDeleteEdit
+        isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)}
+        url="responsa" dados={responsaveisSelecionado}
+        camposUpdate={["nome", "email", "ni", "gestor_id"]}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
 
@@ -57,7 +65,7 @@ export function Responsaveis() {
               <p className="text-lg font-semibold text-gray-800">{responsavel.nome}</p>
             </div>
 
-            <img src={menuIcon} onClick={() => { setResponsaveisSelecionado(responsaveis); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
+            <img src={menuIcon} onClick={() => { setResponsaveisSelecionado(responsavel); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
 
           </div>
 

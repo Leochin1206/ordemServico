@@ -45,7 +45,12 @@ export function Patrimonios() {
 
       <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} titulo="Patrimônio" url="patrimonio" campos={["localizacao", "ni", "descricao"]} />
       <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} urlSearch="patrimonio" parametroUrl="descricao" campos={["id", "localizacao", "ni", "descricao"]} />
-      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} patrimonio={patrimonioSelecionado} />
+      
+      <ModalDeleteEdit
+        isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)}
+        url="patri" dados={patrimonioSelecionado}
+        camposUpdate={["localizacao", "ni", "descricao"]}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
 

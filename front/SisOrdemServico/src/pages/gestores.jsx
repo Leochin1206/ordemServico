@@ -42,21 +42,26 @@ export function Gestores() {
         <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
       </div>
 
-      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
+      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} titulo="Gestores" url="gestores" campos={["nome", "ni", "cargo", "area"]} />
       <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} parametroUrl="nome" urlSearch="gestores" campos={["id", "nome", "ni", "cargo", "area"]} />
-      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} gestor={gestorSelecionado} />
+
+      <ModalDeleteEdit
+        isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)}
+        url="gest" dados={gestorSelecionado}
+        camposUpdate={["nome", "ni", "cargo", "area"]}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
-        
+
         {dados.map((gestor) => (
           <div key={gestor.id} className="bg-white shadow-md rounded-xl p-4 flex justify-between items-center hover:shadow-lg transition-all">
-            
+
             <div>
               <p className="text-sm text-gray-500">ID #{gestor.id}</p>
               <p className="text-lg font-semibold text-gray-800">{gestor.nome}</p>
             </div>
 
-            <img src={menuIcon} onClick={() => { setGestorSelecionado(gestor); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto"/>
+            <img src={menuIcon} onClick={() => { setGestorSelecionado(gestor); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
           </div>
         ))}
 

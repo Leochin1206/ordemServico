@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rolepermissions.roles import assign_role
-from rolepermissions.decorators import has_role_decorator
 
 # ======================= Ambientes =======================
 

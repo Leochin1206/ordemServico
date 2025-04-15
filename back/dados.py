@@ -1,10 +1,11 @@
 import json
 import os
 import django
-from api.models import Patrimonios
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 django.setup()
+
+from api.models import Patrimonios
 
 json_path = os.path.join(os.path.dirname(__file__), 'dados.json')
 

@@ -5,18 +5,24 @@ class Gestores(models.Model):
     ni = models.IntegerField()
     cargo = models.CharField(max_length=255)
     area = models.CharField(max_length=255)
+    is_superUser = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
 
 class Responsaveis(models.Model):
     nome = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     ni = models.IntegerField()
     gestor = models.ForeignKey( Gestores, on_delete=models.SET_NULL, null=True, blank=True)
+    is_superUser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
 class Manutentores(models.Model):
     nome = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    ni = models.IntegerField()
     area = models.CharField(max_length=255)
+    gestor = models.ForeignKey(Gestores, on_delete=models.SET_NULL, null=True, blank=True)
+    is_superUser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
 class Patrimonios(models.Model):
     localizacao = models.IntegerField()
@@ -24,9 +30,8 @@ class Patrimonios(models.Model):
     descricao = models.TextField()
 
 class Ambientes(models.Model):
-    num_sala = models.IntegerField()
-    num_sig = models.IntegerField()
-    descricao_sig = models.CharField(max_length=255)
+    sig = models.IntegerField()
+    descricao = models.CharField(max_length=255)
     ni = models.IntegerField()
     responsavel = models.ForeignKey(Responsaveis, on_delete=models.SET_NULL, null=True, blank=True)
 

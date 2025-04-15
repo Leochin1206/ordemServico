@@ -42,9 +42,18 @@ export function Ambientes() {
         <img src={searchIcon} className="bg-white shadow-md rounded-xl p-2 hover:shadow-lg transition-all" onClick={() => setModalSearch(true)} />
       </div>
 
-      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)} />
+      <ModalAdd isOpen={modalAdd} onClose={() => setModalAdd(false)}
+        titulo="Ambiente" url="ambientes"
+        campos={["sig", "descricao", "ni", "responsavel_id"]}
+        relacoes={{ responsavel_id: { url: "responsaveis", label: "nome" } }} />
+
       <ModalSearch isOpen={modalSearch} onClose={() => setModalSearch(false)} urlSearch="ambientes" campos={["id", "localizacao", "ni", "descricao"]} />
-      <ModalDeleteEdit isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)} ambientes={ambientesSelecionado} />
+
+      <ModalDeleteEdit
+        isOpen={modalDeleteEdit} onClose={() => setModalDeleteEdit(false)}
+        url="ambi" dados={ambientesSelecionado}
+        camposUpdate={["sig", "descricao", "ni", "responsavel_id"]}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-[1100px]">
 
@@ -56,7 +65,7 @@ export function Ambientes() {
               <p className="text-lg font-semibold text-gray-800">{ambiente.descricao}</p>
             </div>
 
-            <img src={menuIcon} onClick={() => { setAmbientesSelecionado(ambientes); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
+            <img src={menuIcon} onClick={() => { setAmbientesSelecionado(ambiente); setModalDeleteEdit(true); }} className="cursor-pointer w-[35px] h-auto" />
 
           </div>
         ))}
